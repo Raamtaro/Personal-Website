@@ -4,27 +4,29 @@
     padding: 0;
 }
 
+
+
 html {
   background: #1e1a20;
 }
 
-html,
-body,
-#root
-{
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    font-family: 'helvetica neue', helvetica, sans-serif;
+html, #root, body {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  font-family: 'helvetica neue', helvetica, sans-serif;
 }
 
-.webgl
+/* .webgl
 {
     position: fixed;
-    top: 0;
+    /* top: 0;
     left: 0;
-    outline: none;
-}
+    outline: none; */
+  
 
 .section {
   display: flex;
@@ -38,7 +40,7 @@ body,
   padding-right: 10%;
 }
 
-section:nth-child(odd)
+section:nth-child(even)
 {
     justify-content: flex-end;
 }
