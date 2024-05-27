@@ -6,8 +6,9 @@ import { useScroll } from '@react-three/drei'
 
 
 function TestMesh() {
+    const meshRef = useRef()
     const materialRef = useRef()
-    const {size, viewport} = useThree()
+    const {size, viewport, camera} = useThree()
     const scroll = useScroll()
 
     // useEffect(()=> {console.log(scroll)}, [])
@@ -15,6 +16,22 @@ function TestMesh() {
     //     const offset = 1 - scroll.offset
     //     console.log(offset)
     // })
+
+    useFrame(()=>{
+        const offset = scroll.offset
+        // console.log(meshRef.current.position.y)
+        console.log(viewport.height)
+        // console.log(offset)
+        if (meshRef.current) {
+            meshRef.current.position.y = (-offset * viewport.height) * 4
+            // meshRef.current.position.set(camera.position.x, camera.position.y, camera.position.z)
+            // meshRef.current.position.y -= (offset - 0.5) * viewport.height
+        }
+
+        if (materialRef.current) {
+            materialRef.current.uniforms.uScrollY.value = offset;
+        }
+    })
   
 
 
@@ -22,7 +39,7 @@ function TestMesh() {
 
     return (
 
-                <mesh>
+                <mesh ref = {meshRef}>
                     <planeGeometry
                         args = {[viewport.width/1.5, viewport.height/1.5]}
                         attach="geometry"

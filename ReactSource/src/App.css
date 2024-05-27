@@ -6,18 +6,20 @@
 
 
 
-html {
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
   background: #1e1a20;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
 }
 
-html, #root, body {
+#root, body {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
-  font-family: 'helvetica neue', helvetica, sans-serif;
 }
 
 /* .webgl
@@ -32,6 +34,7 @@ html, #root, body {
   display: flex;
   align-items: center;
   height: 100vh;
+  /* width: 100vw; */
   position: relative;
   color: #ffeded;
   text-transform: uppercase;

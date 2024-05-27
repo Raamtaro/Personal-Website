@@ -23,7 +23,7 @@ const Scene = () => {
                 
             }}
     >
-        <ScrollControls pages={5}>
+        <ScrollControls pages={5} >
             <Scroll>
                 <TestMesh />
             </Scroll>
