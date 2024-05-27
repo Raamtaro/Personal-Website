@@ -5,6 +5,6 @@ uniform float uTime;
 uniform vec4 uResolution;
 
 void main() {
-    gl_FragColor = vec4(vUv, 0.0, 1.0);
+    gl_FragColor = vec4(vUv, abs(sin(uTime)), 1.0);
     #include <colorspace_fragment>
 }
