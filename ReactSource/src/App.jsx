@@ -6,7 +6,11 @@ import Contact from './Components/Sections/Contact'
 import Scene from './Components/ThreeExperience/Scene'
 import './App.css'
 
+import { useEffect } from 'react'
+
 function App() {
+  
+
 
   // const [count, setCount] = useState(0)
 
@@ -15,11 +19,6 @@ function App() {
 
     <>
       <Scene />
-      <About />
-      <Skills />
-      <Projects />
-      <Experience />
-      <Contact />
     </>
   )
 }

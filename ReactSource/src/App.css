@@ -16,8 +16,7 @@ html, #root, body {
   left: 0;
   width: 100%;
   height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: auto;
   font-family: 'helvetica neue', helvetica, sans-serif;
 }
 
