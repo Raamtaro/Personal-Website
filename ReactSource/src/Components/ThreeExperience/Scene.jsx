@@ -27,7 +27,7 @@ const Scene = () => {
             <Scroll>
                 <TestMesh />
             </Scroll>
-            <Scroll html>
+            <Scroll html style={{width: '100%'}}>
                 <About />
                 <Skills />
                 <Projects />
