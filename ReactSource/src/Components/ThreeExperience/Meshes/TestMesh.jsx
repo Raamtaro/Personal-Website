@@ -41,7 +41,7 @@ function TestMesh() {
 
                 <mesh ref = {meshRef}>
                     <planeGeometry
-                        args = {[viewport.width/1.5, viewport.height/1.5]}
+                        args = {[4, 4]}
                         attach="geometry"
                     />
                     <TestMeshShaderMaterial ref={materialRef} />
