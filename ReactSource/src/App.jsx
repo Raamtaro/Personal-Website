@@ -3,7 +3,11 @@ import Skills from './Components/Sections/Skills'
 import Projects from './Components/Sections/Projects'
 import Experience from './Components/Sections/Experience'
 import Contact from './Components/Sections/Contact'
+import SectionNav from './Components/NavBar/SectionNav'
+
 import Scene from './Components/ThreeExperience/Scene'
+
+
 import './App.css'
 
 import { useEffect } from 'react'
@@ -18,6 +22,7 @@ function App() {
   return (
 
     <>
+      <SectionNav />
       <Scene />
     </>
   )
