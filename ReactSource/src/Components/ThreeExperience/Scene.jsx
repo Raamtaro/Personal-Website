@@ -23,7 +23,13 @@ const Scene = () => {
                 
             }}
     >
-        <directionalLight />
+        <directionalLight 
+            castShadow = {true}
+            shadow-mapSize-width = {1024}
+            shadow-mapSize-height = {1024}
+            shadow-camera-far = {15}
+            shadow-normalBias = {0.05}
+        />
         <ScrollControls pages={5} >
             <Scroll>
                 <TestMesh />

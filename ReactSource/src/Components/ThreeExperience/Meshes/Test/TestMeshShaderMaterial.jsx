@@ -9,37 +9,6 @@ const TestMeshShaderMaterial = forwardRef((props, ref)=> {
 
     //This particular ShaderMaterial is meant to act as a debug or "Hello World" case.
 
-    // const [scrollPositionY, setScrollPositionY] = useState(0)
-
-    // useEffect(()=> {
-    //     console.log("The useEffect() is triggered")
-    //     const handleScrollY = () => {
-    //         console.log("The scroll handler is triggered")
-    //         const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
-    //         setScrollPositionY(window.scrollY/scrollableHeight)
-    //         if (ref) {
-    //             ref.current.uniforms.uScrollY.value = scrollPositionY
-    //         }
-    //     }
-
-    //     console.log("Adding event listener...")
-    //     window.addEventListener('scroll', handleScrollY)
-
-    //     console.log("Event Listener added!")
-    //     return () => {
-    //         console.log("removing event Listener")
-    //         window.removeEventListener('scroll',handleScrollY)
-
-    //         console.log("Event Listener Removed")
-    //     }
-    // }, [ref])
-
-
-
-    // useEffect(()=> {
-    //     console.log(scrollPositionY)
-    // }, [scrollPositionY])
-
     const scroll = useScroll()
 
     // useEffect(()=> {
@@ -51,7 +20,7 @@ const TestMeshShaderMaterial = forwardRef((props, ref)=> {
         
         if (ref.current) {
             ref.current.uniforms.uTime.value = clock.getElapsedTime()
-            ref.current.uniforms.uScrollY.value = window.scrollY/document.documentElement.scrollableHeight
+            
         }
     })
 
@@ -64,7 +33,7 @@ const TestMeshShaderMaterial = forwardRef((props, ref)=> {
                 uMouse: {value: new THREE.Vector2()},
                 uScrollY: {value: 0},
             },
-            wireframe: true,
+            wireframe: false,
         }), [])
 
     return <primitive object={shaderMaterial} ref={ref} attach="material" />
