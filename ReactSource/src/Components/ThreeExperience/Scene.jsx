@@ -6,7 +6,7 @@ import Contact from '../Sections/Contact'
 
 import React from 'react'
 import { Canvas, useThree } from '@react-three/fiber'
-import TestMesh from './Meshes/TestMesh'
+import TestMesh from './Meshes/Test/TestMesh'
 import * as THREE from 'three'
 import { ScrollControls, Scroll, useScroll } from '@react-three/drei'
 
@@ -23,6 +23,7 @@ const Scene = () => {
                 
             }}
     >
+        <directionalLight />
         <ScrollControls pages={5} >
             <Scroll>
                 <TestMesh />

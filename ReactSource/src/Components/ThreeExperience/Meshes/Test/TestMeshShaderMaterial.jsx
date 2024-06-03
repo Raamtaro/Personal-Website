@@ -7,6 +7,8 @@ import testFragment from './TestShaders/fragment.glsl'
 
 const TestMeshShaderMaterial = forwardRef((props, ref)=> {
 
+    //This particular ShaderMaterial is meant to act as a debug or "Hello World" case.
+
     // const [scrollPositionY, setScrollPositionY] = useState(0)
 
     // useEffect(()=> {
@@ -40,10 +42,10 @@ const TestMeshShaderMaterial = forwardRef((props, ref)=> {
 
     const scroll = useScroll()
 
-    useEffect(()=> {
-        console.log(ref)
-        console.log(ref.current)
-    }, [ref])
+    // useEffect(()=> {
+    //     console.log(ref)
+    //     console.log(ref.current)
+    // }, [ref])
 
     useFrame(({ clock }) => {
         
@@ -62,6 +64,7 @@ const TestMeshShaderMaterial = forwardRef((props, ref)=> {
                 uMouse: {value: new THREE.Vector2()},
                 uScrollY: {value: 0},
             },
+            wireframe: true,
         }), [])
 
     return <primitive object={shaderMaterial} ref={ref} attach="material" />
