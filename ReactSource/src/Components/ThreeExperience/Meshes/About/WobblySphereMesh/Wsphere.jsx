@@ -1,4 +1,4 @@
-import React, {useRef, useState, useEffect} from 'react'
+import React, {useRef, useState, useEffect, useMemo} from 'react'
 import { useThree, useFrame,  } from '@react-three/fiber'
 
 import { useScroll } from '@react-three/drei'
@@ -6,9 +6,9 @@ import wobbleVertex from '../Shaders/WobblySphereShaders/vertex.glsl'
 import wobbleFragment from '../Shaders/WobblySphereShaders/fragment.glsl'
 
 import * as THREE from 'three'
-import WSCustomShaderMaterial from './WSCustomShaderMaterial'
 
-import CustomShaderMaterial from 'three-custom-shader-material'
+
+import CustomShaderMaterial from 'three-custom-shader-material/vanilla'
 
 
 const Wsphere = () => {
@@ -17,17 +17,41 @@ const Wsphere = () => {
     const {size, viewport, camera} = useThree()
     const scroll = useScroll()
 
-    // const depthMaterial = new CustomShaderMaterial({
-    //     baseMaterial: THREE.MeshPhysicalMaterial,
-    //     vertexShader: wobbleVertex,
-    //     silent: true,
+    const material = useMemo(() => new CustomShaderMaterial({
+        baseMaterial: THREE.MeshPhysicalMaterial,
+        vertexShader: wobbleVertex,
+        fragmentShader: wobbleFragment,
+        silent: true,
+        uniforms: {
+            uTime: { value: 0 },
+            uScrollY: { value: 0 },
+        },
+        metalness: 0,
+        roughness: 0.5,
+        color: '#ffffff',
+        transmission: 0,
+        ior: 1.5,
+        thickness: 1.5,
+        transparent: true,
+        wireframe: false
+    }), [])
 
-    //     //MeshDepthMaterial
-    //     // depthPacking: THREE.RGBADepthPacking
-    // })
+    const depthMaterial = useMemo(() => new CustomShaderMaterial({
+        baseMaterial: THREE.MeshDepthMaterial,
+        vertexShader: wobbleVertex,
+        // fragmentShader: wobbleFragment,
+        depthPacking: THREE.RGBADepthPacking,
+        silent: true,
+        uniforms: {
+            uTime: { value: 0 },
+            uScrollY: { value: 0 },
+        }
+    }), [])
 
 
-    useFrame(()=>{
+
+
+    useFrame(({clock})=>{
         const offset = scroll.offset
 
         if (meshRef.current) {
@@ -37,22 +61,30 @@ const Wsphere = () => {
 
         if (materialRef.current) {
             materialRef.current.uniforms.uScrollY.value = offset;
+            materialRef.current.uniforms.uTime.value = clock.getElapsedTime();
             
         }
     })
   
 
 
+
+
+
+
     return (
         <mesh ref={meshRef}>
             <icosahedronGeometry attach="geometry"  args={[2.5, 50]} computeTangents={true}/>
-            {/* <WSCustomShaderMaterial ref={materialRef} /> */}
-            <CustomShaderMaterial 
+            
+            {/* <CustomShaderMaterial 
                 baseMaterial={new THREE.MeshPhysicalMaterial}
                 silent
 
 
-            />
+            /> */}
+            {/* Decided to use below approach instead of the React integration because there's I want to provide depthPacking */}
+            <primitive object={material} ref={materialRef} attach="material" />
+            <primitive object={depthMaterial} attach="depthMaterial" />
         </mesh>
     )
 }

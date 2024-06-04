@@ -6,14 +6,30 @@ import Contact from '../Sections/Contact'
 import Wsphere from './Meshes/About/WobblySphereMesh/Wsphere'
 
 
-import React from 'react'
+import React, {useEffect} from 'react'
 import { Canvas, useThree } from '@react-three/fiber'
 import TestMesh from './Meshes/Test/TestMesh'
 import * as THREE from 'three'
 import { ScrollControls, Scroll, useScroll } from '@react-three/drei'
 
+
+// const CameraSetup = () => {
+//     const {camera, size} = useThree()
+
+//     useEffect(()=> {
+//         // camera.fov = 35
+//         // camera.aspect = size.width/ size.height
+//         // camera.near = 0.1
+//         // camera.far = 100
+//         // camera.position.set(13, -3, -5)
+//         camera.updateProjectionMatrix()
+//     }, [camera, size])
+// }
+
 const Scene = () => {
     // const { size, viewport } = useThree()
+    
+
 
     return (
     <Canvas 
@@ -25,6 +41,7 @@ const Scene = () => {
                 
             }}
     >
+        {/* <CameraSetup /> */}
         <directionalLight 
             castShadow = {true}
             shadow-mapSize-width = {1024}
