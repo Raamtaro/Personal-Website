@@ -6,6 +6,7 @@ import wobbleFragment from '../Shaders/WobblySphereShaders/fragment.glsl'
 import * as THREE from 'three'
 import { mergeVertices } from 'three/addons/utils/BufferGeometryUtils.js'
 import CustomShaderMaterial from 'three-custom-shader-material/vanilla'
+import GUI from 'lil-gui'
 
 
 const Wsphere = () => {
@@ -13,8 +14,14 @@ const Wsphere = () => {
     const materialRef = useRef()
     const {size, viewport, camera} = useThree()
     const scroll = useScroll()
+    const debugColors = useRef({
+        colorA: '#0000ff',
+        colorB: '#ff0000'
+    })
 
-
+    useEffect(()=>{
+        console.log(`${debugColors.current.colorA}`)
+    }, [debugColors])
 
     const material = useMemo(() => new CustomShaderMaterial({
         baseMaterial: THREE.MeshPhysicalMaterial,
@@ -31,8 +38,8 @@ const Wsphere = () => {
             uWarpPositionFrequency: new THREE.Uniform(0.38),
             uWarpTimeFrequency: new THREE.Uniform(0.12),
             uWarpStrength: new THREE.Uniform(1.7),
-            uColorA: new THREE.Uniform(new THREE.Color('#0000ff')),
-            uColorB: new THREE.Uniform(new THREE.Color('#ff0000'))
+            uColorA: new THREE.Uniform(new THREE.Color(debugColors.current.colorA)),
+            uColorB: new THREE.Uniform(new THREE.Color(debugColors.current.colorB))
             
         },
         metalness: 0.1,
@@ -76,6 +83,27 @@ const Wsphere = () => {
             console.log(meshRef.current.geometry.attributes)
         }
     }, [meshRef])
+
+    useEffect(()=>{
+        const gui = new GUI({width: 325});
+        gui.add(materialRef.current.uniforms.uPositionFrequency, 'value', 0, 2, 0.001).name('uPositionFrequency')
+        gui.add(materialRef.current.uniforms.uTimeFrequency, 'value', 0, 2, 0.001).name('uTimeFrequency')
+        gui.add(materialRef.current.uniforms.uStrength, 'value', 0, 2, 0.001).name('uStrength')
+        gui.add(materialRef.current.uniforms.uWarpPositionFrequency, 'value', 0, 2, 0.001).name('uWarpPositionFrequency')
+        gui.add(materialRef.current.uniforms.uWarpTimeFrequency, 'value', 0, 2, 0.001).name('uWarpTimeFrequency')
+        gui.add(materialRef.current.uniforms.uWarpStrength, 'value', 0, 2, 0.001).name('uWarpStrength')
+
+        gui.add(material, 'metalness', 0, 1, 0.001)
+        gui.add(material, 'roughness', 0, 1, 0.001)
+        gui.add(material, 'transmission', 0, 1, 0.001)
+        gui.add(material, 'ior', 0, 10, 0.001)
+        gui.add(material, 'thickness', 0, 10, 0.001)
+
+        gui.addColor(debugColors.current, 'colorA').onChange(() => materialRef.current.uniforms.uColorA.value.set(debugColors.current.colorA))
+        gui.addColor(debugColors.current, 'colorB').onChange(() => materialRef.current.uniforms.uColorB.value.set(debugColors.current.colorB))
+
+        return () => gui.destroy();
+    },[])
 
 
 
