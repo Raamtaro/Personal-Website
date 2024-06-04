@@ -38,7 +38,7 @@ function TestMesh() {
 
     return (
 
-                <mesh ref = {meshRef}>
+                <mesh ref = {meshRef} receiveShadow={true} castShadow={true}>
                     <planeGeometry
                         args = {[4, 4]}
                         attach="geometry"
