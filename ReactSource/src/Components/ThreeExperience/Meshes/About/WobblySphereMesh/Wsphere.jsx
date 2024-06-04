@@ -1,13 +1,10 @@
 import React, {useRef, useState, useEffect, useMemo} from 'react'
 import { useThree, useFrame,  } from '@react-three/fiber'
-
 import { useScroll } from '@react-three/drei'
 import wobbleVertex from '../Shaders/WobblySphereShaders/vertex.glsl'
 import wobbleFragment from '../Shaders/WobblySphereShaders/fragment.glsl'
-
 import * as THREE from 'three'
-
-
+import { mergeVertices } from 'three/addons/utils/BufferGeometryUtils.js'
 import CustomShaderMaterial from 'three-custom-shader-material/vanilla'
 
 
@@ -16,6 +13,8 @@ const Wsphere = () => {
     const materialRef = useRef()
     const {size, viewport, camera} = useThree()
     const scroll = useScroll()
+
+
 
     const material = useMemo(() => new CustomShaderMaterial({
         baseMaterial: THREE.MeshPhysicalMaterial,
@@ -36,14 +35,14 @@ const Wsphere = () => {
             uColorB: new THREE.Uniform(new THREE.Color('#ff0000'))
             
         },
-        metalness: 0,
-        roughness: 0.5,
+        metalness: 0.1,
+        roughness: 0.0,
         color: '#ffffff',
-        transmission: 0,
+        transmission: .5,
         ior: 1.5,
         thickness: 1.5,
         transparent: true,
-        wireframe: false
+        wireframe: true
     }), [])
 
     const depthMaterial = useMemo(() => new CustomShaderMaterial({
@@ -68,6 +67,16 @@ const Wsphere = () => {
         },
     }), [])
 
+    useEffect(()=> {
+        if (meshRef.current) {
+            const geometry = meshRef.current.geometry
+            const mergedGeometry = mergeVertices(geometry)
+            mergedGeometry.computeTangents()
+            meshRef.current.geometry = mergedGeometry
+            console.log(meshRef.current.geometry.attributes)
+        }
+    }, [meshRef])
+
 
 
 
@@ -85,16 +94,10 @@ const Wsphere = () => {
             
         }
     })
-  
-
-
-
-
-
 
     return (
         <mesh ref={meshRef}>
-            <icosahedronGeometry attach="geometry"  args={[2.5, 50]} computeTangents={true}/>
+            <icosahedronGeometry attach="geometry"  args={[2.5, 50]}  computeTangents={true} />
             
             {/* <CustomShaderMaterial 
                 baseMaterial={new THREE.MeshPhysicalMaterial}
