@@ -125,7 +125,7 @@ const Wsphere = () => {
 
     return (
         <mesh ref={meshRef}>
-            <icosahedronGeometry attach="geometry"  args={[2.5, 50]}  computeTangents={true} />
+            <icosahedronGeometry attach="geometry"  args={[2.5, 50]} />
             
             {/* <CustomShaderMaterial 
                 baseMaterial={new THREE.MeshPhysicalMaterial}
