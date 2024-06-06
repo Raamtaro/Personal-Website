@@ -1,15 +1,15 @@
 import About from '../Sections/About'
-import Skills from '../Sections/Skills'
-import Projects from '../Sections/Projects'
-import Experience from '../Sections/Experience'
-import Contact from '../Sections/Contact'
-import Wsphere from './Meshes/About/WobblySphereMesh/Wsphere'
+// import Skills from '../Sections/Skills'
+// import Projects from '../Sections/Projects'
+// import Experience from '../Sections/Experience'
+// import Contact from '../Sections/Contact'
+// import Wsphere from './Meshes/About/WobblySphereMesh/Wsphere'
 
 
 import React, {useEffect} from 'react'
 import { Canvas, useThree } from '@react-three/fiber'
-import TestMesh from './Meshes/Test/TestMesh'
-import * as THREE from 'three'
+// import TestMesh from './Meshes/Test/TestMesh'
+// import * as THREE from 'three'
 import { ScrollControls, Scroll, useScroll } from '@react-three/drei'
 
 const Scene = () => {
@@ -36,16 +36,7 @@ const Scene = () => {
         />
         <ambientLight intensity={0.5} />
         <ScrollControls pages={5} >
-            <Scroll>
-                <Wsphere />
-            </Scroll>
-            <Scroll html style={{width: '100%'}}>
-                <About />
-                <Skills />
-                <Projects />
-                <Experience />
-                <Contact />
-            </Scroll>
+            <About />
         </ScrollControls>
 
     </Canvas>
