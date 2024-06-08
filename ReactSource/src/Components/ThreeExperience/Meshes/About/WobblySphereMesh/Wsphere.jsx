@@ -82,8 +82,8 @@ const Wsphere = () => {
             uWarpPositionFrequency: new THREE.Uniform(0.38),
             uWarpTimeFrequency: new THREE.Uniform(0.12),
             uWarpStrength: new THREE.Uniform(1.7),
-            uColorA: new THREE.Uniform(new THREE.Color('#a7a7fb')),
-            uColorB: new THREE.Uniform(new THREE.Color('#f38ef5'))
+            uColorA: new THREE.Uniform(new THREE.Color(debugColors.current.colorA)),
+            uColorB: new THREE.Uniform(new THREE.Color(debugColors.current.colorB))
             
         },
     }), [])
