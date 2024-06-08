@@ -1,4 +1,4 @@
-import React, {useRef, useState, useEffect, useMemo} from 'react'
+import React, {useRef, useState, useEffect, useMemo, useLayoutEffect} from 'react'
 import { useThree, useFrame,  } from '@react-three/fiber'
 import { useScroll } from '@react-three/drei'
 import wobbleVertex from '../Shaders/WobblySphereShaders/vertex.glsl'
@@ -8,21 +8,33 @@ import { mergeVertices } from 'three/addons/utils/BufferGeometryUtils.js'
 import CustomShaderMaterial from 'three-custom-shader-material/vanilla'
 import GUI from 'lil-gui'
 
+//GSAP IMPORTS AND REGISTRATION
+import { gsap } from 'gsap'
+import ScrollTrigger from 'gsap/dist/ScrollTrigger'
+import {useGSAP} from '@gsap/react'
+gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(useGSAP)
+
+
 
 const Wsphere = () => {
+
+    //BASIC SETUP
     const meshRef = useRef()
     const materialRef = useRef()
     const {size, viewport, camera} = useThree()
     const scroll = useScroll()
     const debugColors = useRef({
-        colorA: '#0000ff',
-        colorB: '#ff0000'
+        colorA: '#000000',
+        colorB: '#ffffff'
     })
 
-    useEffect(()=>{
-        console.log(`${debugColors.current.colorA}`)
-    }, [debugColors])
+    // useEffect(()=>{ //DEBUG log statement
+    //     console.log(`${debugColors.current.colorA}`)
+    // }, [debugColors])
 
+
+    //MAIN MATERIAL FOR SHADER MANIPULATION
     const material = useMemo(() => new CustomShaderMaterial({
         baseMaterial: THREE.MeshPhysicalMaterial,
         vertexShader: wobbleVertex,
@@ -31,9 +43,9 @@ const Wsphere = () => {
         uniforms: {
             uScrollY: new THREE.Uniform(0.0),
 
-            uTime: new THREE.Uniform(0.0),
+            uTime: new THREE.Uniform(0.2),
             uPositionFrequency: new THREE.Uniform(0.5),
-            uTimeFrequency: new THREE.Uniform(0.4),
+            uTimeFrequency: new THREE.Uniform(0.2),
             uStrength: new THREE.Uniform(0.3),
             uWarpPositionFrequency: new THREE.Uniform(0.38),
             uWarpTimeFrequency: new THREE.Uniform(0.12),
@@ -42,16 +54,18 @@ const Wsphere = () => {
             uColorB: new THREE.Uniform(new THREE.Color(debugColors.current.colorB))
             
         },
-        metalness: 0.1,
+        metalness: 0.0,
         roughness: 0.0,
         color: '#ffffff',
-        transmission: .5,
+        transmission: 1.0,
         ior: 1.5,
         thickness: 1.5,
         transparent: true,
         wireframe: true
     }), [])
 
+
+    //DEPTH MATERIAL FOR SHADOW CASTING... Honestly, not strictly necessary for the scope of this project as, but including for robustness.
     const depthMaterial = useMemo(() => new CustomShaderMaterial({
         baseMaterial: THREE.MeshDepthMaterial,
         vertexShader: wobbleVertex,
@@ -63,17 +77,19 @@ const Wsphere = () => {
 
             uTime: new THREE.Uniform(0.0),
             uPositionFrequency: new THREE.Uniform(0.5),
-            uTimeFrequency: new THREE.Uniform(0.4),
+            uTimeFrequency: new THREE.Uniform(0.12),
             uStrength: new THREE.Uniform(0.3),
             uWarpPositionFrequency: new THREE.Uniform(0.38),
             uWarpTimeFrequency: new THREE.Uniform(0.12),
             uWarpStrength: new THREE.Uniform(1.7),
-            uColorA: new THREE.Uniform(new THREE.Color('#0000ff')),
-            uColorB: new THREE.Uniform(new THREE.Color('#ff0000'))
+            uColorA: new THREE.Uniform(new THREE.Color('#a7a7fb')),
+            uColorB: new THREE.Uniform(new THREE.Color('#f38ef5'))
             
         },
     }), [])
 
+
+    //COMPUTING TANGENTS OF THE MESH TO GRAB THE BITANGENT
     useEffect(()=> {
         if (meshRef.current) {
             const geometry = meshRef.current.geometry
@@ -84,7 +100,9 @@ const Wsphere = () => {
         }
     }, [meshRef])
 
-    useEffect(()=>{
+
+    // //LIL GUI FOR PLAYING WITH CONTROLS
+    useEffect(()=>{ //Simply for tweaks - I can either comment this out a bit later OR set a classname and hide the GUI
         const gui = new GUI({width: 325});
         gui.add(materialRef.current.uniforms.uPositionFrequency, 'value', 0, 2, 0.001).name('uPositionFrequency')
         gui.add(materialRef.current.uniforms.uTimeFrequency, 'value', 0, 2, 0.001).name('uTimeFrequency')
@@ -107,18 +125,19 @@ const Wsphere = () => {
 
 
 
-
     useFrame(({clock})=>{
         const offset = scroll.offset
 
         if (meshRef.current) {
-            meshRef.current.position.y = (-offset * viewport.height) * 4
+            meshRef.current.position.y = (-offset * viewport.height) * 4 //Centering the Mesh as we scroll down the About Section
 
         }
 
         if (materialRef.current) {
             materialRef.current.uniforms.uScrollY.value = offset;
             materialRef.current.uniforms.uTime.value = clock.getElapsedTime();
+            // console.log(materialRef.current.uniforms.uStrength, materialRef.current.uniforms.uPositionFrequency )s
+            // console.log(offset)
             
         }
     })
