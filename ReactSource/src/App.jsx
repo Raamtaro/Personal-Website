@@ -1,30 +1,21 @@
-import About from './Components/Sections/About'
-import Skills from './Components/Sections/Skills'
-import Projects from './Components/Sections/Projects'
-import Experience from './Components/Sections/Experience'
-import Contact from './Components/Sections/Contact'
-import SectionNav from './Components/NavBar/SectionNav'
-
-import Scene from './Components/ThreeExperience/Scene'
-
-
+import React from 'react'
+import Home from './Components/Sections/Home/Home'
+import About from './Components/Sections/About/About'
+import Skills from './Components/Sections/Skills/Skills'
+import Projects from './Components/Sections/Projects/Projects'
+import Contact from './Components/Sections/Contact/Contact'
 import './App.css'
 
-import { useEffect } from 'react'
-
 function App() {
-  
-
-
-  // const [count, setCount] = useState(0)
-
-
   return (
 
-    <>
-      <SectionNav />
-      <Scene />
-    </>
+    <main>
+      <Home />
+      <About />
+      <Skills />
+      <Projects />
+      <Contact />
+    </main>
   )
 }
 

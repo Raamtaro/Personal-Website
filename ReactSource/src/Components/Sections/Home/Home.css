@@ -1,0 +1,16 @@
+.home {
+
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    justify-content: center;
+
+    font-size: 2.5vmin;
+
+    height: 100%;
+}
+
+/* .scrollIcon {
+    justify-self: flex-end;
+} */

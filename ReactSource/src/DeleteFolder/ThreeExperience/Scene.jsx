@@ -1,4 +1,4 @@
-import About from '../Sections/About'
+// import About from '../Sections/About/About'
 // import Skills from '../Sections/Skills'
 // import Projects from '../Sections/Projects'
 // import Experience from '../Sections/Experience'
@@ -36,7 +36,7 @@ const Scene = () => {
         />
         <ambientLight intensity={0.5} />
         <ScrollControls pages={5} >
-            <About />
+            
         </ScrollControls>
 
     </Canvas>
