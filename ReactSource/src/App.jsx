@@ -8,14 +8,19 @@ import './App.css'
 
 function App() {
   return (
-
-    <main>
-      <Home />
-      <About />
-      <Skills />
-      <Projects />
-      <Contact />
-    </main>
+    <>
+    {/* <main> */}
+      <header className='home'>
+        <Home />
+      </header>
+      <main>
+        <About />
+        {/* <Skills />
+        <Projects />
+        <Contact /> */}
+      </main>
+    {/* </main> */}
+    </>
   )
 }
 

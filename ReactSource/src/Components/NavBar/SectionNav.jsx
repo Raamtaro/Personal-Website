@@ -16,9 +16,6 @@ const SectionNav = () => {
         <span >Projects</span>
         </li>
         <li>
-        <span >Experience</span>
-        </li>
-        <li>
         <span >Contact</span>
         </li>
       </ul>

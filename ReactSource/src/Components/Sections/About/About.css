@@ -1,0 +1,23 @@
+.about {
+    display: flex;
+    padding-top: 50px;
+    padding-right: 30px;
+    padding-bottom: 50px;
+    padding-left: 80px;
+
+    
+
+}
+
+.aboutMe {
+    width: 60%;
+}
+
+.profilePicture {
+    width: 40%;
+}
+
+.aboutText {
+    line-height: 1.6;
+}
+
