@@ -1,4 +1,86 @@
 .skills {
+    display: flex;
+    flex-direction: column;
     padding: 50px 30px;
     gap: 20px;
 }
+.skills h2 {
+    position: relative;
+    font-size: 2rem;
+}
+
+.skills h2::after {
+    content: "";
+    
+    display: block;
+    width: 30%;
+    height: 4px;
+    background-color: white;
+}
+
+.panel {
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+    width: min(100%, 300px);
+}
+
+.title {
+    align-self: center;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+    background-color: rgb(59, 59, 54);
+    padding: 15px 20px;
+    
+}
+
+.row {
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+
+}
+
+.Two {
+    display: flex;
+    justify-content: space-between;
+}
+
+.BackEnd .Two {
+    justify-content: center;
+}
+
+/* .rowTwo {
+    display: flex;
+} */
+
+.skillCards {
+    display: flex;
+    justify-content: space-around;
+}
+
+.skillItem {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.category {
+    text-align: center;
+  }
+
+.title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+
+  .skillItem img {
+    width: 50px; /* Adjust based on your design */
+    height: auto;
+    margin-bottom: 10px;
+  }
