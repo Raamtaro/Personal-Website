@@ -1,6 +1,5 @@
-import React from 'react'
+import React, {useRef, useEffect} from 'react'
 import './Skills.css'
-
 
 /**
  * FrontEnd Icons
@@ -32,14 +31,6 @@ import viteIcon from '../../../assets/SkillCardIcons/Other/Vite.js.svg'
 import vsIcon from '../../../assets/SkillCardIcons/Other/VScode.svg'
 import linuxIcon from '../../../assets/SkillCardIcons/Other/Linux.svg'
 import matlabIcon from '../../../assets/SkillCardIcons/Other/MATLAB.svg'
-
-
-
-
-
-
-
-
 
 const Skills = () => {
   return (
