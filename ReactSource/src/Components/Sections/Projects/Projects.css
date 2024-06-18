@@ -1,0 +1,16 @@
+.projects {
+    padding: 50px 30px;
+    text-align: center;
+  }
+  
+  .projects h2 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+  }
+  
+  .project-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  

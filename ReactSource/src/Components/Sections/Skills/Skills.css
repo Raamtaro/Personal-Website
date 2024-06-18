@@ -7,15 +7,18 @@
 .skills h2 {
     position: relative;
     font-size: 2rem;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .skills h2::after {
     content: "";
     
     display: block;
-    width: 30%;
+    width: 50%;
     height: 4px;
     background-color: white;
+    margin: 10px auto;
 }
 
 .panel {
@@ -25,17 +28,25 @@
     width: min(100%, 300px);
 }
 
-.title {
-    align-self: center;
-}
+
 
 .card {
     display: flex;
     flex-direction: column;
     gap: 45px;
-    background-color: rgb(59, 59, 54);
-    padding: 15px 20px;
-    
+    background: #333;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    transition: transform 0.5s, box-shadow 0.5s;
+
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .row {
@@ -61,6 +72,7 @@
 .skillCards {
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .skillItem {
@@ -68,19 +80,27 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    transition: 0.5s;
+}
+
+.skillItem:hover {
+    transform: scale(1.1);
 }
 
 .category {
     text-align: center;
+    flex: 1;
+    min-width: 250px;
   }
 
 .title {
+    align-self: center;
     font-size: 1.5rem;
-    margin-bottom: 20px;
+    margin-top: 10px;
   }
 
-  .skillItem img {
-    width: 50px; /* Adjust based on your design */
+.skillItem img {
+    width: 50px; 
     height: auto;
     margin-bottom: 10px;
   }

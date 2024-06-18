@@ -61,11 +61,11 @@ const Skills = () => {
               </div>
               <div className="skillItem">
                 <img src={reactIcon} alt="React JS" />
-                <p>React JS</p>
+                <p>React</p>
               </div>
               <div className="skillItem">
                 <img src={threeIcon} alt="THREE JS" />
-                <p>Three JS</p>
+                <p>Three.js</p>
               </div>
             </div>
             <div className="row Three">
@@ -115,7 +115,7 @@ const Skills = () => {
         </div>
         <div className="panel">
           <div className="title">
-              Misc Tools
+              Misc
           </div>
           <div className="card">
             <div className="row One">
