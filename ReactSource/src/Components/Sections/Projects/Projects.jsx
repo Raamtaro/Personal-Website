@@ -1,6 +1,6 @@
 import React from 'react'
 import ProjectCard from './ProjectCard.jsx'
-import YTProject from "../../../assets/ProjectThumbnails/YTThumbnail.mp4"
+import YTProject from "../../../assets/ProjectThumbnails/output.mp4"
 import './Projects.css'
 
 const projects = [
