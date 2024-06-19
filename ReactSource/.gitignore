@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+
+# Project Thumbnails (too larget to push)
+src/assets/ProjectThumbnails
