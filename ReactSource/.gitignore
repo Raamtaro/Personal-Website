@@ -25,4 +25,4 @@ dist-ssr
 
 
 # Project Thumbnails (too larget to push)
-./src/assets/ProjectThumbnails/*
+*.mp4
